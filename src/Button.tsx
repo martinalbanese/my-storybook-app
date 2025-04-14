@@ -13,7 +13,7 @@ type ButtonProps = {
  * @param disableOnClick - Se true, il bottone viene disabilitato dopo il click
  * @returns Un bottone con l'etichetta e il gestore di click
 */
-export const Button: React.FC<ButtonProps> = ({ label, onClick, isDisabled }) => {
+export const Button: React.FC<ButtonProps> = ({ label, onClick, isDisabled = false }) => {
     const [disabled, setDisabled] = useState(isDisabled);
 
     const handleClick = async () => {
@@ -22,7 +22,7 @@ export const Button: React.FC<ButtonProps> = ({ label, onClick, isDisabled }) =>
         setDisabled(false);
     };
 
-    return <button onClick={handleClick} disabled={disabled}>{label}</button>
+    return <button onClick={handleClick} disabled={disabled || isDisabled}>{label}</button>
 }
 
 
