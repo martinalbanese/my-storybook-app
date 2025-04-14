@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 type ButtonProps = {
     label: string;
@@ -12,5 +12,15 @@ type ButtonProps = {
  * @returns Un bottone con l'etichetta e il gestore di click
 */
 export const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
-    return <button onClick={onClick}>{label}</button>
+    const [isDisabled, setIsDisabled] = useState(false);
+
+    const handleClick = async () => {
+        setIsDisabled(true);
+        await onClick();
+        setIsDisabled(false);
+    };
+
+    return <button onClick={handleClick} disabled={isDisabled}>{label}</button>
 }
+
+
